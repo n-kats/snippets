@@ -1,0 +1,75 @@
+snippet tf_import
+abbr    import tensorflow
+  import tensorflow as tf
+  import numpy as np
+
+snippet tf_sess
+abbr    with tf.Session() as sess:...
+  with tf.Session() as sess:
+    sess.run(tf.initialize_all_variables())
+
+snippet tf_sess_in_graph
+abbr    with tf.Graph().as_default(), tf.Session() as sess:...
+  with tf.Session() as sess:
+    sess.run(tf.initialize_all_variables())
+
+snippet tf_place
+abbr    tf.placeholder(...
+  tf.placeholder(${1:type}, ${2:shpae})
+
+snippet tf_Var
+abbr    tf.Varibale(...
+  tf.Varibale()
+snippet tf_var
+abbr    tf.get_variable(name, shape, initializer)
+  tf.get_variable("${1:name}", ${2:shape}, ${3:initializer})
+
+snippet tf_vscope
+abbr    with tf.variable_scope(name):...
+  with tf.variable_scope("${1:name}", reuse=${2:True}):
+    ${0}
+
+snippet tf_vscope_as
+abbr    with tf.variable_scope(name) as scope:...
+  with tf.variable_scope("${1:name}", reuse=${2:True}) as scope:
+    ${0}
+
+snippet tf_init_const
+abbr    tf.const_initializer(val)
+  tf.const_initializer(${1:value})
+
+snippet tf_init_rand_uni
+abbr    tf.random_uniform_initializer(a,b)
+  tf.random_uniform_initializer(${1:from}, ${2:to})
+
+snippet tf_init_rand_norm
+abbr    tf.random_normal_initializer(mean, stddev)
+  tf.random_normal_initializer(${1:mean}, ${2:stddev})
+
+snippet tf_flags
+abbr    flags = tf.Flags...
+  flags = tf.Flags
+  flags.DEFFINE_string("data", None, "data path")
+  FLAGS = flags
+
+  def get_config:
+      return FLAGS
+
+snippet tf_main
+abbr    if __name__ == "__main__":...
+  if __name__ == "__main__":
+    tf.app.run()
+
+snippet tf_dev
+abbr    with tf.device("/cpu:0"):...
+  with tf.device("/cpu:0"):
+    ${0}
+
+snippet tf_grpc
+abbr    with tf.Session("grpc://...
+  with tf.Session("grpc://${1:ip}:${2:port}") as sess:
+    ${0}
+
+snippet tf_server
+abbr    tf.train.Server...
+  server = tf.train.Server.create_local_server()
