@@ -2,6 +2,7 @@ snippet tf_import
 abbr    import tensorflow
   import tensorflow as tf
   import numpy as np
+  ${0}
 
 snippet tf_sess
 abbr    with tf.Session() as sess:...
@@ -18,8 +19,8 @@ abbr    tf.placeholder(...
   tf.placeholder(${1:type}, ${2:shpae})
 
 snippet tf_Var
-abbr    tf.Varibale(...
-  tf.Varibale()
+abbr    tf.Variable(...
+  tf.Variable(${0})
 snippet tf_var
 abbr    tf.get_variable(name, shape, initializer)
   tf.get_variable("${1:name}", ${2:shape}, ${3:initializer})
@@ -73,3 +74,25 @@ abbr    with tf.Session("grpc://...
 snippet tf_server
 abbr    tf.train.Server...
   server = tf.train.Server.create_local_server()
+  ${0}
+
+snippet tf_merge
+abbr    tf.merge_all_summaries()
+  tf.merge_all_summaries()${0}
+
+snippet tf_suvi
+abbr    tf.train.Supervisor(...
+  sv = tf.train.Supervisor(is_chief=True)
+  sess = sv.prepare_or_wait_for_session()
+  sv.start_queue_runners(sess)
+
+snippet tf_mnist
+abbr    from tensorflow.examples.tutorials.minist ...
+  from tensorflow.examples.tutorials.mnist import input_data
+  mnist = input_data.read_data_sets("/home/${1:user}/data/MNIST_data/", one_hot=True)
+  ${0}
+
+snippet tf_mnist_batch
+abbr    batch_xs, batch_ys = mnist.train.next_batch(...
+  batch_xs, batch_ys = mnist.train.next_batch(${1:100})
+
