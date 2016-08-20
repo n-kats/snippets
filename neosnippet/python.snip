@@ -1,18 +1,8 @@
-snippet tf_import
-abbr    import tensorflow
-  import tensorflow as tf
-  import numpy as np
-  ${0}
-
-snippet tf_sess
-abbr    with tf.Session() as sess:...
-  with tf.Session() as sess:
-    sess.run(tf.initialize_all_variables())
-
 snippet tf_sess_in_graph
 abbr    with tf.Graph().as_default(), tf.Session() as sess:...
-  with tf.Session() as sess:
+  with tf.Graph().as_default(), tf.Session() as sess:
     sess.run(tf.initialize_all_variables())
+    ${0}
 
 snippet tf_place
 abbr    tf.placeholder(...
@@ -86,13 +76,16 @@ abbr    tf.train.Supervisor(...
   sess = sv.prepare_or_wait_for_session()
   sv.start_queue_runners(sess)
 
-snippet tf_mnist
-abbr    from tensorflow.examples.tutorials.minist ...
-  from tensorflow.examples.tutorials.mnist import input_data
-  mnist = input_data.read_data_sets("/home/${1:user}/data/MNIST_data/", one_hot=True)
+snippet tf_saver
+abbr    saver = tf.train.Saver()
+  saver = tf.train.Saver()
+
+snippet tf_save
+abbr    saver.save(sess, ...
+  saver.save(sess, "${1:model.ckpt}")
   ${0}
 
-snippet tf_mnist_batch
-abbr    batch_xs, batch_ys = mnist.train.next_batch(...
-  batch_xs, batch_ys = mnist.train.next_batch(${1:100})
-
+snippet tf_restore
+abbr    saver.restore(sess, ...
+  saver.restore(sess, "${1:model.ckpt}")
+  ${0}
